@@ -10,26 +10,24 @@
 <body>
     <a href="{{ route('employee.index') }}" class="back-button">Back</a>
     <div class="buttons-container">
-        <form method="GET" action="{{ route('excel.download') }}">
+        <form method="GET" action="{{ route('excel.download') }}" class="excel-form">
             @csrf
             <h3>Download File</h3>
             <div class="radio-label">
                 <input type="radio" name="downloadType" value="withData">With Data
-            </div>
-            <div class="radio-label">
                 <input type="radio" name="downloadType" value="withoutData">Without Data
+                <button type="submit" class="action-button">Export Data</button>
             </div>
-            <button type="submit">Export Data</button>
         </form>
-        <form method="POST" action="{{ route('excel.upload') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('excel.upload') }}" enctype="multipart/form-data" class="excel-form">
             @csrf
             <h3>Upload File</h3>
-            <input type="file" id="myfile" name="myfile"><br>
-            <button type="submit">Import Data</button>
+            <input type="file" id="myfile" name="myfile">
+            <button type="submit" class="action-button">Import Data</button>
+            @error('myfile')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </form>
-        @error('myfile')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
     </div>
 </body>
 </html>
