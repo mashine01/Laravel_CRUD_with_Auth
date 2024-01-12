@@ -9,25 +9,18 @@
 <body>
     <div class="header">
         <div class="top-header">
-            <p>Welcome, {{ Auth::user()->email }}</p>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit">Logout</button>
-            </form>
-            <form method="GET" action="{{ route('excel.downloadData') }}">
-                @csrf
-                <a href="/excel.xlsx" download><button type="submit">Download Excel</button></a>
-            </form>
-            <form method="GET" action="{{ route('excel.download') }}">
-                @csrf
-                
-                <a href="/excel.xlsx" download><button type="submit">Download Excel without Data</button></a>
-            </form>
-            <form method="POST" action="{{ route('excel.upload') }}" enctype="multipart/form-data">
-                @csrf
-                <input type="file" id="myfile" name="myfile">
-                <button type="submit">Import Data</button>
-            </form>
+            <div class="left-content">
+            </div>
+            <div class="center-content">
+                <p>Welcome, {{ Auth::user()->email }}</p>
+            </div>
+            <div class="right-content">
+                <a href="{{route("employee.download")}}"><button></button></a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -36,18 +29,19 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
-            
+            @endif 
         </div>
+
         <div class="bottom-header">
             <h2>Manage Employees</h2>
-            <div class="buttonsContainer">
+            <div class="right-content">
                 <a href="{{route('employee.create')}}">
-                    <button>Create a New Employee</button>
+                    <button>+ Add New</button>
                 </a>
             </div>
         </div>
     </div>
+
     <div>
         <table class="crud" border="1">
             <tr>
@@ -83,7 +77,7 @@
             </tr>
             @endforeach
         </table>
-        
     </div>
+
 </body>
 </html>

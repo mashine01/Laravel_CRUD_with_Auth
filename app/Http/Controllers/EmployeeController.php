@@ -122,4 +122,9 @@ class EmployeeController extends Controller
         $employee->delete();
         return redirect(route('employee.index'))->with('success', 'Employee deleted successfully');
     }
+
+       
+    public function display() {
+        return view('employee.download');
+    }
 }
