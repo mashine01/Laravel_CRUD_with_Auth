@@ -24,9 +24,10 @@
             <h3>Upload File</h3>
             <input type="file" id="myfile" name="myfile">
             <button type="submit" class="action-button">Import Data</button>
-            @error('myfile')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+            
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
         </form>
     </div>
 </body>
