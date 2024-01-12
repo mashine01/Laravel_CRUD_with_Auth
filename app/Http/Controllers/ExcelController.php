@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Validator;
 
 class ExcelController extends Controller {
 
+    public function download(Request $request) {
+        $downloadType = $request->input('downloadType');
+    
+        if ($downloadType === 'withData') {
+            return $this->download_with_data();
+        } elseif ($downloadType === 'withoutData') {
+            return $this->download_without_data();
+        } else {
+            return response()->json(['error' => 'Invalid request']);
+        }
+    }    
+    
+
 public function download_with_data() {
     $employees = Employee::all();
     $spreadsheet = new Spreadsheet();
@@ -54,13 +67,11 @@ public function download_with_data() {
 
     public function upload_data(Request $request)
     {
-        $request->validate([
-            'myfile' => 'required|mimes:xlsx',
-        ]);
     
         $validator = Validator::make($request->all(), [
             'myfile' => 'required|mimes:xlsx',
         ]);
+
     
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -99,21 +110,18 @@ public function download_with_data() {
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
-    
-            if ($row['A'] == 'Full Name' && $row['B'] == 'E-Mail' && $row['C'] == 'Phone #') {
-                continue;
-            }
-    
+
+
             $existingRecord = Employee::where('email', $row['B'])->first();
-            Employee::updateOrCreate(
-                ['email' => $row['B']],
-                [
-                    'fullname' => $row['A'],
-                    'phone' => $row['C'],
-                ]
-            );
+            Employee::updateOrInsert(
+                    ['email' => $row['B']],
+                    [
+                        'fullname' => $row['A'],
+                        'phone' => $row['C'],
+                    ]
+                );
         }
-    
+
         return redirect(route('employee.index'))->with('success', 'Data uploaded successfully!');
     }    
 }

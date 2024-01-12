@@ -14,7 +14,7 @@ body {
     background-color: #aed4f7;
     color: #2277c2;
     cursor: pointer;
-    width: 100px;
+    width: 60px;
 }
 
 .header button:hover {
@@ -43,10 +43,33 @@ body {
     margin-right: 3%;
 }
 
+.actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1%;
+    justify-content: space-between;
+}
+
+.actions button{
+    border-radius: 20px;
+    border-style: none;
+    padding: 10px;
+    background-color: #aed4f7;
+    color: #2277c2;
+    cursor: pointer;
+    width: 150px;
+}
+
+
 .crud {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+}
+
+.crud table{
+    border-radius:500px;
 }
 
 .crud th {

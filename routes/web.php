@@ -35,8 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::PUT("/employee/{employee}/update", [EmployeeController::class, 'update'])->name('employee.update');
     Route::DELETE("/employee/{employee}/destroy", [EmployeeController::class, 'destroy'])->name('employee.destroy');
     Route::GET("/employee/download", [EmployeeController::class, 'display'])->name('employee.download');
-    Route::GET("/employee/download_file", [ExcelController::class, 'download_with_data'])->name('excel.downloadData');
-    Route::GET("/employee/download_file", [ExcelController::class, 'download_without_data'])->name('excel.download');
+    Route::GET("/employee/download_file", [ExcelController::class, 'download'])->name('excel.download');
     Route::POST("/employee/upload", [ExcelController::class, 'upload_data'])->name('excel.upload');
 });
 

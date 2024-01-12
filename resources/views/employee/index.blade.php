@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/index.css">
-    <title>Employee Table</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <title>Employee Table</title>
 </head>
 <body>
     <div class="header">
@@ -15,7 +15,6 @@
                 <p>Welcome, {{ Auth::user()->email }}</p>
             </div>
             <div class="right-content">
-                <a href="{{route("employee.download")}}"><button></button></a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit">Logout</button>
@@ -34,11 +33,19 @@
 
         <div class="bottom-header">
             <h2>Manage Employees</h2>
-            <div class="right-content">
-                <a href="{{route('employee.create')}}">
-                    <button>+ Add New</button>
-                </a>
-            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <div class="left-button">
+            <a href="{{route('employee.create')}}">
+                <button>+ Add New</button>
+            </a>
+        </div>
+        <div class="right-button">
+            <a href="{{route("employee.download")}}">
+                <button><i class="fa fa-file-excel-o"></i> Modify using Excel</button>
+            </a>
         </div>
     </div>
 
