@@ -15,7 +15,7 @@ body {
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #3498db;
+    background-color: #4caf50;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -23,8 +23,9 @@ body {
 }
 
 .back-button:hover {
-    background-color: #2980b9;
+    background-color: #45a049;
 }
+
 
 .buttons-container {
     gap: 10px;
@@ -40,6 +41,11 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+
+.buttons-container form {
+    flex: 1; /* Allow the forms to take equal space in the container */
+    width: 500px; /* Set a maximum width for better aesthetics, adjust as needed */
 }
 
 button {

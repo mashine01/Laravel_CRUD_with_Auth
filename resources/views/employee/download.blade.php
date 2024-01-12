@@ -12,6 +12,7 @@
     <div class="buttons-container">
         <form method="GET" action="{{ route('excel.download') }}">
             @csrf
+            <h3>Download File</h3>
             <div class="radio-label">
                 <input type="radio" name="downloadType" value="withData">With Data
             </div>
@@ -22,7 +23,8 @@
         </form>
         <form method="POST" action="{{ route('excel.upload') }}" enctype="multipart/form-data">
             @csrf
-            <input type="file" id="myfile" name="myfile">
+            <h3>Upload File</h3>
+            <input type="file" id="myfile" name="myfile"><br>
             <button type="submit">Import Data</button>
         </form>
         @error('myfile')
